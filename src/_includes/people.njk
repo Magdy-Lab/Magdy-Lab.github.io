@@ -1,0 +1,21 @@
+---
+layout: layout.njk
+title: Lab Members
+---
+
+<h2>Advisor</h2>
+{% include "member-card.njk" with { member: members.advisor } %}
+
+<h2>Current Students</h2>
+<div class="grid">
+  {% for person in members.current %}
+    {% include "member-card.njk" with { member: person } %}
+  {% endfor %}
+</div>
+
+<h2>Graduated Students</h2>
+<div class="grid">
+  {% for person in members.alumni %}
+    {% include "member-card.njk" with { member: person } %}
+  {% endfor %}
+</div>

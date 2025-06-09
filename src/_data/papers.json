@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Context-Aware LLMs in Healthcare",
+    "authors": [
+      { "name": "David Chen", "profile": "https://davidchen.dev" }
+    ],
+    "conference": "EMNLP 2025",
+    "date": "2026-12-12",
+    "link": "https://openreview.net/pdf?id=XXXX",
+    "abstract": "We introduce a method for contextualizing large language models to better support medical conversations with high accuracy and fairness."
+  },
+  {
+    "title": "Efficient Transformers for Multimodal Tasks",
+    "authors": [
+      { "name": "Hamdi Labib", "profile": "https://example.edu/hamdi" },
+      { "name": "Alice Zhang", "profile": "https://linkedin.com/in/alice" }
+    ],
+    "conference": "ACL 2025",
+    "date": "2028-06-01",
+    "link": "https://arxiv.org/pdf/0000.00000.pdf",
+    "abstract": "This paper presents a new transformer model that improves efficiency for multimodal input sequences with minimal performance degradation."
+  }
+]

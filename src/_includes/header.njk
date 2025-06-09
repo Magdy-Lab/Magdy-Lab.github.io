@@ -1,0 +1,75 @@
+<header style="background: linear-gradient(to right, #1a1d21, #2c2f35); padding: 20px 24px; color: white; position: relative;">
+  <nav style="display: flex; justify-content: space-between; align-items: center;">
+
+    <!-- Clickable Animated Lab Name -->
+    <span onclick="loadContent('/')" style="cursor: pointer;">
+      <strong id="lab-title" style="
+        font-family: 'Inter', sans-serif;
+        font-size: 2em;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #e2e8f0;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.35);
+        white-space: nowrap;
+      ">
+        <span id="lab-name-text"></span>
+      </strong>
+    </span>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons" style="display: flex; gap: 0; margin-right: 10px;">
+      <button onclick="loadContent('/')" class="nav-btn">Home</button>
+      <button onclick="loadContent('/papers')" class="nav-btn">Research</button>
+      <button onclick="loadContent('/news')" class="nav-btn">News</button>
+      <button onclick="loadContent('/people')" class="nav-btn">Meet the Team</button>
+      <button onclick="loadContent('/chatbot')" class="nav-btn">Chat with the Lab</button>
+    </div>
+  </nav>
+
+  <style>
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      padding: 0.4rem 1rem;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      border-left: 1px solid rgba(226, 232, 240, 0.2);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-btn:first-child {
+      border-left: none;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .nav-buttons {
+      backdrop-filter: none;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const text = "Magdy Lab"; // Replace with your actual lab name
+      const output = document.getElementById("lab-name-text");
+      let i = 0;
+
+      function typeChar() {
+        if (i < text.length) {
+          output.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 60);
+        }
+      }
+
+      typeChar();
+    });
+  </script>
+</header>

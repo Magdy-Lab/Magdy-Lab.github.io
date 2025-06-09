@@ -1,0 +1,51 @@
+{
+  "advisor": {
+    "name": "Dr. Amr Magdy",
+    "title": "Associate Professor in Computer Science, University of California Riverside",
+    "email": "amr.magdy@ucr.edu",
+    "image": "/assets/images/profile/Amr_Magdy_Pic.jpg",
+    "profile": "https://www.cs.ucr.edu/~amr/"
+  },
+  "current": [
+    {
+      "name": "Alhassan",
+      "title": "PhD Student in Computer Science, University of California Riverside",
+      "image": "/assets/images/Alhassan_Pic.jpg",
+      "profile": "https://www.linkedin.com/in/alshareedah/"
+    },
+    {
+      "name": "Yiyang Bian",
+      "title": "PhD Student in Computer Science, University of California Riverside",
+      "image": "/assets/images/profile/Yiyang_Pic.jpg",
+      "profile": "https://www.linkedin.com/in/yiyangbian/"
+    },
+    {
+      "name": "Yunhan Chang",
+      "title": "PhD Student in Computer Science, University of California Riverside",
+      "image": "/assets/images/profile/Yunhan_Pic.jpg",
+      "profile": "https://www.linkedin.com/in/yunhan-chang-8173a6332/"      
+    },
+    {
+      "name": "Ahmed Abdelmaguid ",
+      "title": "PhD Student in Computer Science, University of California Riverside",
+      "image": "/assets/images/profile/Ahmed_Pic.png",
+      "profile": "https://www.linkedin.com/in/ahmed-moh-hamdi/"      
+    }
+  ],
+  "alumni": [
+    {
+      "name": "Yongyi Liu",
+      "title": "PhD in Computer Science, University of California Riverside",
+      "image": "/assets/images/profile/Yongyi_Pic.jpg",
+      "currentPosition": "Software Engineer, Oracle",
+      "profile": "https://www.linkedin.com/in/yongyi-liu-ucr/"
+    },
+    {
+      "name": "Laila Abdelhafeez",
+      "title": "PhD in Computer Science, University of California Riverside",
+      "image": "/assets/images/profile/Laila_Pic.jpg",
+      "currentPosition": "To be Determined",
+      "profile": "https://www.linkedin.com/in/laila-abdelhafeez/"
+    }
+  ]
+}
