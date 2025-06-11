@@ -1,13 +1,11 @@
 <div class="member-card">
-  <img src="{{ member.image }}" alt="{{ member.name }}" />
+  <img src="{{ member.image | url }}" alt="{{ member.name }}" />
   <div>
     <h3>{{ member.name }}</h3>
     <p>{{ member.title }}</p>
     {% if member.currentPosition %}
-    <p><em>{{ member.currentPosition }}</em></p>
+      <p><em>{{ member.currentPosition }}</em></p>
     {% endif %}
-    <a href="{{ member.profile }}" target="_blank">View Profile</a>
+    <a href="{{ member.profile | url }}" target="_blank">View Profile</a>
   </div>
 </div>
-
-

@@ -11,7 +11,7 @@ title: Latest News
     letter-spacing: -0.5px;
     margin: 1.5rem 0 1rem;
     text-decoration: underline;
-    text-underline-offset: 6px; /* Push underline away from text for a cleaner look */
+    text-underline-offset: 6px;
   }
 </style>
 
@@ -32,13 +32,13 @@ title: Latest News
       {% if item.images %}
         {% if item.images.length == 1 %}
           <div class="news-single-image">
-            <img src="{{ item.images[0] }}" alt="{{ item.title }}" />
+            <img src="{{ item.images[0] | url }}" alt="{{ item.title }}" />
           </div>
         {% else %}
           <div class="news-images-flex">
             {% for image in item.images %}
               <div class="flex-image">
-                <img src="{{ image }}" alt="{{ item.title }} image {{ loop.index }}" />
+                <img src="{{ image | url }}" alt="{{ item.title }} image {{ loop.index }}" />
               </div>
             {% endfor %}
           </div>
