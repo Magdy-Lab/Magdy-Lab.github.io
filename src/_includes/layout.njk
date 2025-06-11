@@ -20,14 +20,13 @@
       box-sizing: border-box;
     }
 
-   
     body {
       font-family: 'Helvetica Neue', sans-serif;
       line-height: 1.6;
-      background: url('/assets/images/wallpaper_greyscale_extremely_light_retry.png') no-repeat center center fixed;
+      background: url("{{ '/assets/images/wallpaper_greyscale_extremely_light_retry.png' | url }}") no-repeat center center fixed;
       background-size: cover;
       color: var(--fg);
-      }
+    }
 
     a {
       color: var(--accent);
@@ -93,9 +92,8 @@
       font-size: 0.9rem;
       text-align: center;
       text-decoration: none;
-      box-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.04),
-        0 2px 6px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+                  0 2px 6px rgba(0, 0, 0, 0.02);
       transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
 
@@ -161,48 +159,48 @@
       cursor: zoom-in;
     }
 
-.news-images-flex {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  flex-wrap: nowrap;
-}
+    .news-images-flex {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: nowrap;
+    }
 
-.flex-image {
-  flex: 1;
-  max-width: calc(100% / 3 - 0.67rem);
-}
+    .flex-image {
+      flex: 1;
+      max-width: calc(100% / 3 - 0.67rem);
+    }
 
-.flex-image img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  object-fit: cover;
-  display: block;
-  cursor: zoom-in;
-}
+    .flex-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+    }
 
-.meta.authors-inline a {
-  display: inline;
-  white-space: nowrap;
-}
+    .meta.authors-inline a {
+      display: inline;
+      white-space: nowrap;
+    }
 
-.meta.authors-inline {
-  white-space: normal;
-  line-height: 1.5;
-}
+    .meta.authors-inline {
+      white-space: normal;
+      line-height: 1.5;
+    }
 
-@media (max-width: 768px) {
-  .flex-image {
-    max-width: calc(50% - 0.5rem);
-  }
-}
+    @media (max-width: 768px) {
+      .flex-image {
+        max-width: calc(50% - 0.5rem);
+      }
+    }
 
-@media (max-width: 480px) {
-  .flex-image {
-    max-width: 100%;
-  }
-}
+    @media (max-width: 480px) {
+      .flex-image {
+        max-width: 100%;
+      }
+    }
 
     .news-date {
       font-size: 0.9rem;
@@ -294,7 +292,6 @@
       }
     }
 
-    /* 🔍 Modal styles */
     .image-modal {
       display: none;
       position: fixed;
@@ -321,83 +318,78 @@
 <body>
   {% include "header.njk" %}
 
-  
   <main id="dynamic-content">
-  {{ content | safe }}
+    {{ content | safe }}
   </main>
+
   {% include "footer.njk" %}
 
-  <!-- Modal Container -->
   <div id="imageModal" class="image-modal">
     <img id="modalImg" src="" alt="Expanded image" />
   </div>
 
-  <!-- Scripts -->
-<script>
-  // External link behavior
-  function bindExternalLinks() {
-    document.querySelectorAll('a[href^="http"]').forEach(link => {
-      if (!link.href.includes(location.hostname)) {
-        link.setAttribute('target', '_blank');
-        link.setAttribute('rel', 'noopener noreferrer');
-      }
-    });
-  }
+  <script>
+    const BASE = "{{ '/' | url }}".replace(/\/$/, '');
 
-  // Lightbox setup
-  const modal = document.getElementById('imageModal');
-  const modalImg = document.getElementById('modalImg');
-
-  function bindImageLightbox() {
-    document.querySelectorAll('.news-images-grid img, .news-images-flex img, .news-single-image img').forEach(img => {
-      img.addEventListener('click', () => {
-        modalImg.src = img.src;
-        modal.style.display = 'flex';
+    function bindExternalLinks() {
+      document.querySelectorAll('a[href^="http"]').forEach(link => {
+        if (!link.href.includes(location.hostname)) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
       });
-    });
-  }
+    }
 
-  // Close modal events
-  modal.addEventListener('click', () => {
-    modal.style.display = 'none';
-    modalImg.src = '';
-  });
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
+    function bindImageLightbox() {
+      document.querySelectorAll('.news-images-grid img, .news-images-flex img, .news-single-image img').forEach(img => {
+        img.addEventListener('click', () => {
+          modalImg.src = img.src;
+          modal.style.display = 'flex';
+        });
+      });
+    }
+
+    modal.addEventListener('click', () => {
       modal.style.display = 'none';
       modalImg.src = '';
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.style.display = 'none';
+        modalImg.src = '';
+      }
+    });
+
+    function loadContent(path) {
+      fetch(BASE + path)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newContent = doc.querySelector('#dynamic-content');
+          if (newContent) {
+            document.querySelector('#dynamic-content').innerHTML = newContent.innerHTML;
+            history.pushState({}, '', BASE + path);
+            bindImageLightbox();
+            bindExternalLinks();
+          }
+        })
+        .catch(err => console.error('Error loading content:', err));
     }
-  });
 
-  // Load content dynamically + rebind scripts
-  function loadContent(path) {
-    fetch(path)
-      .then(res => res.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        const newContent = doc.querySelector('#dynamic-content');
-        if (newContent) {
-          document.querySelector('#dynamic-content').innerHTML = newContent.innerHTML;
-          history.pushState({}, '', path);
-          bindImageLightbox();      // Rebind image modal
-          bindExternalLinks();      // Rebind external link behavior
-        }
-      })
-      .catch(err => console.error('Error loading content:', err));
-  }
+    window.onpopstate = () => {
+      const path = location.pathname.replace(BASE, '') || '/';
+      loadContent(path);
+    };
 
-  // Enable browser navigation
-  window.onpopstate = () => {
-    loadContent(location.pathname);
-  };
-
-  // On first load
-  document.addEventListener('DOMContentLoaded', () => {
-    bindImageLightbox();
-    bindExternalLinks();
-  });
-</script>
+    document.addEventListener('DOMContentLoaded', () => {
+      bindImageLightbox();
+      bindExternalLinks();
+    });
+  </script>
 </body>
 </html>
