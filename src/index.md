@@ -21,7 +21,7 @@ title: Welcome to My Research Lab
       <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
         {{ latest_paper.abstract }}
       </p>
-      <a onclick="loadContent('{{ '/papers' | url }}')" style="display:inline-block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent); text-decoration: underline;">Read More</a>
+      <a onclick="loadContent('/papers')" style="display:inline-block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent); text-decoration: underline;">Read More</a>
     </div>
   {% endif %}
 
@@ -33,7 +33,7 @@ title: Welcome to My Research Lab
       <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
         {{ latest_news.text }}
       </p>
-      <a onclick="loadContent('{{ '/news' | url }}')" style="display:inline-block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent); text-decoration: underline;">Read More</a>
+      <a onclick="loadContent('/news')" style="display:inline-block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent); text-decoration: underline;">Read More</a>
     </div>
   {% endif %}
 
