@@ -7,7 +7,7 @@ module.exports = function (eleventyConfig) {
       includes: "_includes",
       output: "dist"
     },
-    pathPrefix: "/research-lab-website/"
+    pathPrefix: "/"
   };
 };
 console.log("✅ Eleventy config loaded with pathPrefix");
