@@ -3,11 +3,15 @@ layout: layout.njk
 title: Welcome to My Research Lab
 ---
 
-{% assign sortedNews = news | sort: "date" | reverse %}
-{% assign latest_news = sortedNews[0] %}
+{% if news %}
+  {% assign sortedNews = news | sort: "date" | reverse %}
+  {% assign latest_news = sortedNews[0] %}
+{% endif %}
 
-{% assign sortedPapers = papers | sort: "date" | reverse %}
-{% assign latest_paper = sortedPapers[0] %}
+{% if papers %}
+  {% assign sortedPapers = papers | sort: "date" | reverse %}
+  {% assign latest_paper = sortedPapers[0] %}
+{% endif %}
 
 <div class="hero">
   <h1>Advancing Data, Intelligence, and Computation</h1>
@@ -37,17 +41,6 @@ title: Welcome to My Research Lab
     </div>
   {% endif %}
 
-  <!-- Optional nav links -->
-  <!--
-  <div class="links">
-    <a href="{{ '/people' | url }}">Meet the Team</a>
-    <a href="{{ '/papers' | url }}">Published Research</a>
-    <a href="{{ '/news' | url }}">Latest News</a>
-    <a href="{{ '/chatbot' | url }}">Chat with the Lab</a>
-  </div>
-  -->
-
-  <!-- Collaborators Section -->
   <div class="collaborators" style="margin-top: 3rem;">
     <h3 style="margin-bottom: 1rem;">Our Collaborators</h3>
     <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; padding: 1rem 0;">
