@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome to My Research Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --fg: #1c1e21;
+      --accent: #4a90e2;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --subtext: #5f6368;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      background: url("/assets/images/wallpaper_greyscale_extremely_light_retry.png") no-repeat center center fixed;
+      background-size: cover;
+      color: var(--fg);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    a:hover {
+      opacity: 0.8;
+    }
+
+    header {
+      background: var(--card);
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    header strong {
+      font-size: 1.3rem;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: var(--card);
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--subtext);
+    }
+
+    .links {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .links a {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #e0e0e0;
+      color: #1c1e21;
+      border: 1px solid #d0d0d0;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04),
+                  0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    }
+
+    .links a:hover {
+      background: #d0d0d0;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .links a:active {
+      background: #c6c6c6;
+      transform: translateY(0);
+    }
+
+    .member-card {
+      width: 100%;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      background: var(--card);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .member-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .member-card h3 {
+      margin-bottom: 0.2rem;
+    }
+
+    .member-card a {
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .news-card {
+      display: block;
+      width: 100%;
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .news-single-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 1rem;
+      border-radius: 6px;
+      cursor: zoom-in;
+    }
+
+    .news-images-flex {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: nowrap;
+    }
+
+    .flex-image {
+      flex: 1;
+      max-width: calc(100% / 3 - 0.67rem);
+    }
+
+    .flex-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      object-fit: cover;
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .meta.authors-inline a {
+      display: inline;
+      white-space: nowrap;
+    }
+
+    .meta.authors-inline {
+      white-space: normal;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .flex-image {
+        max-width: calc(50% - 0.5rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .flex-image {
+        max-width: 100%;
+      }
+    }
+
+    .news-date {
+      font-size: 0.9rem;
+      color: var(--subtext);
+      margin-bottom: 0.8rem;
+    }
+
+    .newest {
+      font-style: italic;
+      font-weight: bold;
+      color: red;
+      margin-left: 0.5rem;
+    }
+
+    .papers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+
+    .paper-card {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .paper-card h3 {
+      margin-bottom: 0.3rem;
+      font-size: 1.2rem;
+    }
+
+    .paper-card h3 a {
+      color: var(--fg);
+      text-decoration: none;
+    }
+
+    .paper-card h3 a:hover {
+      text-decoration: underline;
+    }
+
+    .meta {
+      font-size: 0.9rem;
+      color: var(--subtext);
+      margin-bottom: 0.8rem;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    h2 {
+      font-family: 'Work Sans', sans-serif;
+      margin-top: 1.5rem;
+      font-size: 1.8rem;
+      text-align: left;
+    }
+
+    .meta a {
+      display: inline;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .abstract {
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--subtext);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    @media (max-width: 600px) {
+      .news-images-grid {
+        grid-template-columns: 2fr;
+      }
+    }
+
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      cursor: zoom-out;
+    }
+  </style>
+</head>
+
+<body>
+  <header style="background: linear-gradient(to right, #1a1d21, #2c2f35); padding: 20px 24px; color: white; position: relative;">
+  <nav style="display: flex; justify-content: space-between; align-items: center;">
+
+    <!-- Clickable Animated Lab Name -->
+    <span onclick="loadContent('/')" style="cursor: pointer;">
+      <strong id="lab-title" style="
+        font-family: 'Inter', sans-serif;
+        font-size: 2em;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #e2e8f0;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.35);
+        white-space: nowrap;
+      ">
+        <span id="lab-name-text"></span>
+      </strong>
+    </span>
+
+    <!-- Navigation Buttons -->
+    <div class="nav-buttons" style="display: flex; gap: 0; margin-right: 10px;">
+      <button onclick="loadContent('/')" class="nav-btn">Home</button>
+      <button onclick="loadContent('/papers')" class="nav-btn">Research</button>
+      <button onclick="loadContent('/news')" class="nav-btn">News</button>
+      <button onclick="loadContent('/people')" class="nav-btn">Meet the Team</button>
+      <button onclick="loadContent('/chatbot')" class="nav-btn">Chat with the Lab</button>
+    </div>
+  </nav>
+
+  <style>
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      padding: 0.4rem 1rem;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      border-left: 1px solid rgba(226, 232, 240, 0.2);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .nav-btn:first-child {
+      border-left: none;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .nav-buttons {
+      backdrop-filter: none;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const text = "Magdy Lab"; // Replace with your actual lab name
+      const output = document.getElementById("lab-name-text");
+      let i = 0;
+
+      function typeChar() {
+        if (i < text.length) {
+          output.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeChar, 60);
+        }
+      }
+
+      typeChar();
+    });
+  </script>
+</header>
+
+
+  <main id="dynamic-content">
+    <div class="hero">
+  <h1>Advancing Data, Intelligence, and Computation</h1>
+  <p>We develop cutting-edge systems and models to drive innovation in data management, spatial computing, quantum technologies, and artificial intelligence.</p>
+<p><div class="latest-paper-snippet" style="margin: 2rem auto; max-width: 600px; background: var(--card); padding: 1.5rem 2rem; border-radius: 10px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12); transition: box-shadow 0.3s ease;">
+<h3 style="margin-bottom: 0.4rem;">Latest Publication</h3>
+<p style="font-weight: bold; font-size: 1.05rem;">Efficient Transformers for Multimodal Tasks</p>
+<p style="font-size: 0.9rem; color: var(--subtext); margin-bottom: 0.6rem;">ACL 2025</p>
+<p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+This paper presents a new transformer model that improves efficiency for multimodal input sequences with minimal performance degradation.
+</p>
+<a onclick="loadContent('/papers')" style="display:inline-block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent); text-decoration: underline;">Read More</a>
+</div></p>
+<p><div class="latest-news-snippet" style="margin: 2rem auto; max-width: 600px; background: var(--card); padding: 1.5rem 2rem; border-radius: 10px; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12); transition: box-shadow 0.3s ease;">
+<h3 style="margin-bottom: 0.4rem;">Latest News</h3>
+<p style="font-weight: bold; font-size: 1.05rem;">A Double Doctoral Triumph: Celebrating Two PhD Graduates from Our Lab</p>
+<p style="font-size: 0.9rem; color: var(--subtext); margin-bottom: 0.6rem;">2025-06-07</p>
+<p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+Today, we proudly celebrate the remarkable achievement of two outstanding scholars from our lab—Laila Abdelhafeez and Yongyi Liu, as they officially graduate with their PhDs. This milestone marks the culmination of years of dedication, perseverance, and impactful research. Both Laila and Yongyi have made significant contributions to their fields, and their accomplishments reflect the strength of collaboration, curiosity, and resilience fostered within our lab. Please join us in congratulating them on this well-deserved success and wishing them the very best in their future endeavors.
+</p>
+<a onclick="loadContent('/news')" style="display:inline-block; margin-top: 0.5rem; font-size: 0.9rem; color: var(--accent); text-decoration: underline;">Read More</a>
+</div></p>
+  <!-- Optional nav links -->
+  <!--
+  <div class="links">
+    <a href="/people">Meet the Team</a>
+    <a href="/papers">Published Research</a>
+    <a href="/news">Latest News</a>
+    <a href="/chatbot">Chat with the Lab</a>
+  </div>
+  -->
+  <!-- Collaborators Section -->
+  <div class="collaborators" style="margin-top: 3rem;">
+    <h3 style="margin-bottom: 1rem;">Our Collaborators</h3>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 2rem; padding: 1rem 0;">
+      <img src="/assets/images/logos/Azur.png" alt="Microsoft Azure" style="height: 50px; padding: 0.5rem;" />
+      <img src="/assets/images/logos/USC.jpg" alt="University of Southern California" style="height: 50px; padding: 0.5rem;" />
+      <img src="/assets/images/logos/Google.png" alt="Google" style="height: 50px; padding: 0.5rem;" />
+      <img src="/assets/images/logos/QCRI.png" alt="QCRI" style="height: 50px; padding: 0.5rem;" />
+    </div>
+  </div>
+</div>
+
+  </main>
+
+  <footer style="
+  background: linear-gradient(to right, #1a1d21, #2c2f35);
+  color: #e2e8f0;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.4;
+">
+
+  <!-- Lab and Institution Info -->
+  <p style="margin-bottom: 0.6rem;">
+    University of California, Riverside<br>
+    361 Winston Chung Hall, 900 University Ave, Riverside, CA 92521
+  </p>
+
+  <!-- Principal Investigator -->
+  <p style="margin-bottom: 0.6rem;">
+    Lab Director: 
+    <a href="https://www.cs.ucr.edu/~amr/" target="_blank" rel="noopener noreferrer">Prof. Amr Magdy</a>
+  </p>
+
+  <!-- Mini Sitemap -->
+  <nav style="margin: 0.8rem 0;">
+    <a href="/" rel="noopener noreferrer">Home</a> |
+    <a href="/papers" rel="noopener noreferrer">Research</a> |
+    <a href="/news" rel="noopener noreferrer">News</a> |
+    <a href="/people" rel="noopener noreferrer">People</a>
+  </nav>
+
+  <!-- Legal and Copyright -->
+  <p style="margin-bottom: 0;">
+    &copy; 2025 Magdy Lab. All rights reserved.<br>
+    <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a> |
+    <a href="/accessibility.html" target="_blank" rel="noopener noreferrer">Accessibility</a>
+  </p>
+
+  <style>
+    footer a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.2s ease-in-out;
+    }
+
+    footer a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    footer nav a {
+      margin: 0 0.25rem;
+    }
+  </style>
+</footer>
+
+
+  <div id="imageModal" class="image-modal">
+    <img id="modalImg" src="" alt="Expanded image" />
+  </div>
+
+  <script>
+    const BASE = "/".replace(/\/$/, '');
+
+    function bindExternalLinks() {
+      document.querySelectorAll('a[href^="http"]').forEach(link => {
+        if (!link.href.includes(location.hostname)) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      });
+    }
+
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+
+    function bindImageLightbox() {
+      document.querySelectorAll('.news-images-grid img, .news-images-flex img, .news-single-image img').forEach(img => {
+        img.addEventListener('click', () => {
+          modalImg.src = img.src;
+          modal.style.display = 'flex';
+        });
+      });
+    }
+
+    modal.addEventListener('click', () => {
+      modal.style.display = 'none';
+      modalImg.src = '';
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        modal.style.display = 'none';
+        modalImg.src = '';
+      }
+    });
+
+    function loadContent(path) {
+      fetch(BASE + path)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newContent = doc.querySelector('#dynamic-content');
+          if (newContent) {
+            document.querySelector('#dynamic-content').innerHTML = newContent.innerHTML;
+            history.pushState({}, '', BASE + path);
+            bindImageLightbox();
+            bindExternalLinks();
+          }
+        })
+        .catch(err => console.error('Error loading content:', err));
+    }
+
+    window.onpopstate = () => {
+      const path = location.pathname.replace(BASE, '') || '/';
+      loadContent(path);
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      bindImageLightbox();
+      bindExternalLinks();
+    });
+  </script>
+</body>
+</html>
