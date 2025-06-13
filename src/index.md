@@ -1,6 +1,6 @@
 ---
 layout: layout.njk
-title: Welcome to My Research Lab
+title: Amr Magdy's Research Lab Website
 ---
 
 {% if news %}
